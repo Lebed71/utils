@@ -1,6 +1,7 @@
 const config = require('config');
-const amqp = require('amqplib/channel_api');
 const logger = require('custom-logger');
+const amqp = require('amqplib/channel_api');
+
 class MQ {
     constructor() {
         this.connection = null;
@@ -11,32 +12,39 @@ class MQ {
         if (this.connection && this.channel) {
             return;
         }
+
         return new Promise(async resolve => {
             let isNotFirst = true;
-            if(!this.connectionResolver) {
+
+            if (!this.connectionResolver) {
                 isNotFirst = false;
                 this.connectionResolver = resolve;
             }
+
             try {
                 this.connection = await amqp.connect(config.amqp.uri);
             } catch(e) {
                 logger.error(e);
                 setTimeout(this.connect.bind(this), config.amqp.reconnectTimeout);
+
                 if(isNotFirst) {
                     resolve();
                 }
                 return;
             }
+
             this.channel = await this.connection.createChannel();
-            this.channel.once('close', async () => { 
+            this.channel.once('close', async () => {
                 this.connection = null;
                 this.channel = null;
                 this.connectionResolver = null;
                 await this.connect();
             });
+
             if (typeof this.connectionResolver === 'function') {
                 this.connectionResolver();
             }
+
             this.connectionResolver = null;
         });
     }

@@ -1,4 +1,3 @@
-# utils
 # Repository contains some simple && ready for use utils for Node.js projects;
  
  Summary:

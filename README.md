@@ -5,3 +5,4 @@
  Summary:
  
  - MQ.js - singletone controller for RabbitMQ based on official library - amqplib;
+ - MongoDB.js - singletone controller for MongoDB based on most popular library - mongoose;

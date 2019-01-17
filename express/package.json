@@ -1,0 +1,35 @@
+{
+  "name": "express-base-template",
+  "version": "1.0.0",
+  "description": "Small && simple project for quick start with Express.js-based application",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "method-override": "^2.3.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "NODE_PATH=./ node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lebed71/utils.git"
+  },
+  "keywords": [
+    "express",
+    "node.js",
+    "js",
+    "javascript"
+  ],
+  "author": "Daniil Lebedinsky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lebed71/utils/issues"
+  },
+  "homepage": "https://github.com/Lebed71/utils#readme"
+}

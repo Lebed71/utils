@@ -1,5 +1,6 @@
 const http = require('http');
 
+const config = require('config');
 const express = require('express');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
@@ -7,8 +8,8 @@ const methodOverride = require('method-override');
 const { NotFoundError } = require('./lib/errors');
 
 (async () => {
-    const host = process.env.APP_HOST || 'localhost';
-    const port = process.env.APP_PORT || 8080;
+    const host = process.env.APP_HOST || config.server.host;
+    const port = process.env.APP_PORT || config.server.port;
 
     const app = express();
 

@@ -39,11 +39,11 @@ class Database extends EventEmitter {
     }
 }
 
-Database.setConnector(db => db.connect(database.uri, {
+Database.setConnector(db => db.connect(process.env.MONGO_URL || database.uri || 'mongodb://localhost:27017/db', {
     promiseLibrary: Promise,
     poolSize: 10,
-    ...database.options,
+    ...(database || {}).options,
     useNewUrlParser: true
 }));
 
-module.exports = Database;
+module.exports = new Database();
